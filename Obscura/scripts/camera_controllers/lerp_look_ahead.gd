@@ -1,30 +1,15 @@
-class_name PositionLock
+class_name LerpLookAhead
 extends CameraControllerBase
 
 
-var is_active:bool = false
-
-
+# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	super()
+	pass # Replace with function body.
 
 
+# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if !current:
-		is_active = false
-		return
-	
-	if not is_active:
-		is_active = true
-		draw_camera_logic = true
-	
-	if draw_camera_logic:
-		draw_logic()
-	
-	position.x = target.position.x
-	position.z = target.position.z
-	
-	super(delta)
+	pass
 
 
 func draw_logic() -> void:
