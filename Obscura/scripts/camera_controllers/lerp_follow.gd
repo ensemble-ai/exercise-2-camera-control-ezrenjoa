@@ -3,7 +3,7 @@ extends CameraControllerBase
 
 
 @export var follow_speed:float = 0.75 # ratio of vessel speed
-@export var catchup_speed:float = target.BASE_SPEED
+@export var catchup_speed:float = 20
 @export var leash_distance:float = 5.0
 
 var is_active:bool = false
@@ -31,16 +31,24 @@ func _process(delta: float) -> void:
 	
 	var velocity:Vector3 = target.velocity * follow_speed
 	var fps := 1.0 / delta	# approximate frames per sec rate, based on delta
-	var distance = Vector2(position.x, position.z).distance_to(
+	var distance := Vector2(position.x, position.z).distance_to(
 			Vector2(target.position.x, target.position.z))
+	var catchup_speed_per_frame := catchup_speed / fps
+	
+	#print(distance)
 	
 	if position.is_equal_approx(target.position):
 		velocity = Vector3(0, 0, 0)
 	if distance > leash_distance:
 		velocity = target.velocity
 	if target.velocity.is_zero_approx():
-		#velocity = catchup_speed
-		print("catching up")
+		velocity = Vector3(0, 0, 0)
+		
+		var tpos_xz = Vector2(target.position.x, target.position.z)
+		var cpos_xz = Vector2(position.x, position.z).move_toward(tpos_xz, 
+				catchup_speed_per_frame)
+		position = Vector3(cpos_xz.x, position.y, cpos_xz.y)
+		#print("catching up")
 	
 	position += velocity / fps
 	
