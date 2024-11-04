@@ -37,8 +37,6 @@ func _process(delta: float) -> void:
 	
 	#print(distance)
 	
-	if position.is_equal_approx(target.position):
-		velocity = Vector3(0, 0, 0)
 	if distance > leash_distance:
 		velocity = target.velocity
 	if target.velocity.is_zero_approx():

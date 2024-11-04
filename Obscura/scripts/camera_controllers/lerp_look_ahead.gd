@@ -2,8 +2,8 @@ class_name LerpLookAhead
 extends CameraControllerBase
 
 
-@export var lead_speed:float = 1.25 * target.BASE_SPEED
-@export var catchup_delay_duration:float = 0.5 # in seconds
+@export var lead_speed:float = 1.15 * target.BASE_SPEED
+@export var catchup_delay_duration:float = 0.2 # in seconds
 @export var catchup_speed:float = 20
 @export var leash_distance:float = 5.0
 
@@ -31,30 +31,35 @@ func _process(delta: float) -> void:
 	if draw_camera_logic:
 		draw_logic()
 	
-	if target.velocity.x > target.BASE_SPEED or target.velocity.z > target.BASE_SPEED:
-		lead_speed = 1.25 * target.HYPER_SPEED
-	
 	var fps := 1.0 / delta	# approximate frames per sec rate, based on delta
-	var distance := Vector3(target.position.x, 0, target.position.z) - Vector3(
-				position.x, 0, position.z)
-	var direction := distance.normalized()
-	print(direction)
+	var distance := Vector2(position.x, position.z).distance_to(
+			Vector2(target.position.x, target.position.z))
 	var catchup_speed_per_frame := catchup_speed / fps
+	var direction := target.velocity.normalized()
+	var velocity:Vector3 = lead_speed * direction
+	var tpos_xz := Vector2(target.position.x, target.position.z)
+	var cpos_xz := Vector2(position.x, position.z)
 	
-	if catchup_timer >= catchup_delay_duration:
-		var tpos_xz = Vector2(target.position.x, target.position.z)
-		var cpos_xz = Vector2(position.x, position.z).move_toward(tpos_xz, 
-				catchup_speed_per_frame)
-		position = Vector3(cpos_xz.x, position.y, cpos_xz.y)
-	elif target.velocity.is_zero_approx():
+	# FIXME: when vessel is at leash distance and changes direction, 
+			# it maintains same position relative to camera
+	if target.velocity.x > target.BASE_SPEED or target.velocity.z > target.BASE_SPEED:
+		velocity = target.HYPER_SPEED * direction
+	elif distance > leash_distance:
+		velocity = target.velocity
+	else:
+		velocity = lead_speed * direction
+	
+	if target.velocity.is_zero_approx():
+		velocity = Vector3(0, 0, 0)
 		catchup_timer += delta
+		if catchup_timer >= catchup_delay_duration:
+			cpos_xz = cpos_xz.move_toward(tpos_xz, catchup_speed_per_frame)
+			position = Vector3(cpos_xz.x, 0, cpos_xz.y)
+	else:
+		catchup_timer = 0
 	
-	if distance.length() > leash_distance:
-		catchup_timer = 0
-		position += target.velocity / fps
-	elif not target.velocity.is_zero_approx():
-		catchup_timer = 0
-		position += lead_speed * direction / fps
+	
+	position += velocity / fps
 	
 	super(delta)
 
