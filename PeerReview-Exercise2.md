@@ -89,17 +89,22 @@ The user has used ver good code style with no imperfections. The user has format
 ___
 #### Put style guide infractures ####
 
+No style guide infractions, the user adheres to the godot style guide very well and makes sure to write clean and readable code.
 ___
 
 # Best Practices #
 
 ### Description ###
 
-The user for the most part follows best practices in their code. One slight infraction is that throughout the files the user macsess the properties of the target. This is not best practice since continously acsessing the variable can be less efficiant
+The user for the most part, follows best practices in their code. One slight infraction is that throughout the files, the user accesses the properties of the target. This is not the best practice since continuously assessing the variable can be less efficient. On the other hand, the suer showcases multiple best practices by writing explicit comments and introducing descriptive variable names.
+
 
 #### Best Practices Infractions ####
 
 [Repeated acsess to target.position and target.velocity](https://github.com/ensemble-ai/exercise-2-camera-control-ezrenjoa/blob/99726fa635354a197638d1af666c8bd89f005ff5/Obscura/scripts/camera_controllers/lerp_follow.gd#L26) - Both target.position and target.velocity are used multiple times in the code. Storing these in local variables at the start is best practice since not doing so would introduce a slight overhead.
 
-[Clear Comments for Boundry Checks](https://github.com/ensemble-ai/exercise-2-camera-control-ezrenjoa/blob/99726fa635354a197638d1af666c8bd89f005ff5/Obscura/scripts/camera_controllers/speedup_push_box.gd#L40) - The addition of specific comments regarding the boundry changes helps clarify the purpose of each of the blocks and especially in complex conditions its make it clear what part of the code is exactly effecting which part
 #### Best Practices Exemplars ####
+
+[Clear Comments for Boundry Checks](https://github.com/ensemble-ai/exercise-2-camera-control-ezrenjoa/blob/99726fa635354a197638d1af666c8bd89f005ff5/Obscura/scripts/camera_controllers/speedup_push_box.gd#L40) - The addition of specific comments regarding the boundry changes helps clarify the purpose of each of the blocks and especially in complex conditions its make it clear what part of the code is exactly effecting which part
+
+[Descriptive Variable Names](https://github.com/ensemble-ai/exercise-2-camera-control-ezrenjoa/blob/35a9b519f33beedb8e46bc0db9dc36187e489419/Obscura/scripts/camera_controllers/lerp_follow.gd#L36) - The use uses descriptive variable names clearly defining what each variable represents. This reduces the change of leaving anything up for interpretation and allows for people who are new to the code base to easily understand what each variable is meant for. Also reduces the need for extra comments and makes the code just more readable.
