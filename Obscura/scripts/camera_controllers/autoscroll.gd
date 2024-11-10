@@ -2,9 +2,9 @@ class_name Autoscroll
 extends CameraControllerBase
 
 
-@export var top_left:Vector2 = Vector2(-10.0, -10.0)
-@export var bottom_right:Vector2 = Vector2(10, 10)
-@export var autoscroll_speed:Vector3 = Vector3(3.0, 0, 3.0)
+@export var top_left:Vector2 = Vector2(-5.0, -5.0)
+@export var bottom_right:Vector2 = Vector2(5.0, 5.0)
+@export var autoscroll_speed:Vector3 = Vector3(3.0, 0, 0)
 
 var is_active:bool = false
 # boundaries

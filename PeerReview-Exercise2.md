@@ -1,58 +1,15 @@
-# Peer-Review for Programming Exercise 2 #
-
-## Description ##
-
-For this assignment, you will be giving feedback on the completeness of assignment two: Obscura. To do so, we will give you a rubric to provide feedback. Please give positive criticism and suggestions on how to fix segments of code.
-
-You only need to review code modified or created by the student you are reviewing. You do not have to check the code and project files that the instructor gave out.
-
-Abusive or hateful language or comments will not be tolerated and will result in a grade penalty or be considered a breach of the UC Davis Code of Academic Conduct.
-
-If there are any questions at any point, please email the TA.   
-
-## Due Date and Submission Information
-See the official course schedule for due date.
-
-A successful submission should consist of a copy of this markdown document template that is modified with your peer review. This review document should be placed into the base folder of the repo you are reviewing in the master branch. The file name should be the same as in the template: `CodeReview-Exercise2.md`. You must also include your name and email address in the `Peer-reviewer Information` section below.
-
-If you are in a rare situation where two peer-reviewers are on a single repository, append your UC Davis user name before the extension of your review file. An example: `CodeReview-Exercise2-username.md`. Both reviewers should submit their reviews in the master branch.  
-
 # Solution Assessment #
 
 ## Peer-reviewer Information
 
-* *name:* [your name here] 
-* *email:* [your @ucdavis.edu email address here]
-
-### Description ###
-
-For assessing the solution, you will be choosing ONE choice from: unsatisfactory, satisfactory, good, great, or perfect.
-
-The break down of each of these labels for the solution assessment.
-
-#### Perfect #### 
-    Can't find any flaws with the prompt. Perfectly satisfied all stage objectives.
-
-#### Great ####
-    Minor flaws in one or two objectives. 
-
-#### Good #####
-    Major flaw and some minor flaws.
-
-#### Satisfactory ####
-    Couple of major flaws. Heading towards solution, however did not fully realize solution.
-
-#### Unsatisfactory ####
-    Partial work, not converging to a solution. Pervasive Major flaws. Objective largely unmet.
-
-
-___
+* *name:* Anunay Akhaury 
+* *email:* aakhaury@ucdavis.edu
 
 ## Solution Assessment ##
 
 ### Stage 1 ###
 
-- [ ] Perfect
+- [x] Perfect
 - [ ] Great
 - [ ] Good
 - [ ] Satisfactory
@@ -60,12 +17,12 @@ ___
 
 ___
 #### Justification ##### 
-Write Justification here.
+The camera controller remains centered on the vessel, ensuring smooth and consistent tracking. The draw logic correctly displays a centered 5x5 unit cross only when draw_camera_logic is set to true. Camera also remains locked when the player is in super boost mode as well.
 
 ___
 ### Stage 2 ###
 
-- [ ] Perfect
+- [x] Perfect
 - [ ] Great
 - [ ] Good
 - [ ] Satisfactory
@@ -73,12 +30,12 @@ ___
 
 ___
 #### Justification ##### 
-Write Justification here.
+The camera controller's frame-bound autoscroller works as expected, moving the player within the z-x plane box. The player is smoothly pushed forward by the left edge of the box if they fall behind, which is the intended behavior. Additionally, the frame border box is displayed accurately when draw_camera_logic is set to true. The exported fields top_left and bottom_right work, allowing easy customization of the frame size. Adjusting these values directly impacts the dimensions of the frame, and modifying autoscroll_speed correctly changes the scrolling speed and direction on the x and z axes.
 
 ___
 ### Stage 3 ###
 
-- [ ] Perfect
+- [x] Perfect
 - [ ] Great
 - [ ] Good
 - [ ] Satisfactory
@@ -86,25 +43,24 @@ ___
 
 ___
 #### Justification ##### 
-Write Justification here.
+The camera behaves as intended, following the player and catching up when the player breaks the leash distance or stops movement. The camera smoothly approaches the player at the speed of follow speed and leaves enough distance to allow for following. Catchup speed works as well allowing the camera to catch up smoothly once the player stops. Changing the follow_speed, catchup_speed, and leash_distance all work as well within the editor. One minor issue was when the player starts to super boost the distance between the player and the camera is sometimes inconsistent, sometimes being the leash distance or sometimes being shorter than that. But the camera follows the player even during a super boost. The draw logic correctly displays a 5x5 unit cross only when draw_camera_logic is set to true
 
 ___
 ### Stage 4 ###
 
 - [ ] Perfect
-- [ ] Great
+- [x] Great
 - [ ] Good
 - [ ] Satisfactory
 - [ ] Unsatisfactory
 
 ___
 #### Justification ##### 
-Write Justification here.
-
+The camera behaves as intended, and it leads the player in whatever direction they are moving in. The camera only moves a maximum of the leash distance away from the player and the camera returns back to the target using the catchup speed. The catchup delay also works as intended, only catching the player up once the delay has passed. The draw logic correctly displays a 5x5 unit cross only when draw_camera_logic is set to true. The floats lead_speed, catchup_delay_duration, catchup_speed, and leash_distance are all properly modifiable using the interface in the editor. The camera doesn't follow the player as intended when super boost is active though, causing for unpredictable behavior where the player will get ahead of the camera or won't be at a leash distance away.
 ___
 ### Stage 5 ###
 
-- [ ] Perfect
+- [x] Perfect
 - [ ] Great
 - [ ] Good
 - [ ] Satisfactory
@@ -112,27 +68,24 @@ ___
 
 ___
 #### Justification ##### 
-Write Justification here.
+The 4-way speedup zone works as intended. The camera does not move when the player is inside the inner most area. When the player leaves the inner area the player moves as a speed times the push ratio that is set. Once the player hits the outside borders on any side, the player starts to move at their actual speed. The push_ratio, pushbox_top_left, pushbox_bottom_right, speedup_zone_top_left, speedup_zone_bottom_right all are exported correctly and easily modifiable from the editor. But when one thing is that when the draw logic is true only the outer boder is drawn, it would have been nice to visualise the inner speed up zone.
 ___
 # Code Style #
 
 
 ### Description ###
-Check the scripts to see if the student code adheres to the GDScript style guide.
 
-If sections do not adhere to the style guide, please peramlink the line of code from Github and justify why the line of code has not followed the style guide.
-
-It should look something like this:
-
-* [description of infraction](https://github.com/dr-jam/ECS189L) - this is the justification.
-
-Please refer to the first code review template on how to do a permalink.
-
+The user has used ver good code style with no imperfections. The user has formated their code with the proper indentations and spacing. Spacing around operators and assignments are done correctly. The name conventions for both variable names and class names follow their respective case type. Type hints are placed upon the varibales and methods ensuring correct infered typing. The comments that are written are brier but provide valuable information about the code. Overall the use practices good code style according to the godot style guide and has made no clear infractions to it.
 
 #### Style Guide Infractions ####
 
 #### Style Guide Exemplars ####
 
+[Consistent use of type hints](https://github.com/ensemble-ai/exercise-2-camera-control-ezrenjoa/blob/99726fa635354a197638d1af666c8bd89f005ff5/Obscura/scripts/camera_controllers/speedup_push_box.gd#L5) -  the user makes sure to give all variable type hints which allows for the code to be cleaner and ensures that there will be no type-related errors.
+
+[Consistent Double Spacing in Between Functions](https://github.com/ensemble-ai/exercise-2-camera-control-ezrenjoa/blob/99726fa635354a197638d1af666c8bd89f005ff5/Obscura/scripts/camera_controllers/position_lock.gd#L11) - Functions are seperated by two blank lines just as how the style guide reccomends. This allows for the code to be much cleaner and much easier to read since the functions are seperated.
+
+[Spacing Around Operators](https://github.com/ensemble-ai/exercise-2-camera-control-ezrenjoa/blob/99726fa635354a197638d1af666c8bd89f005ff5/Obscura/scripts/camera_controllers/lerp_look_ahead.gd#L45) - There is consistant spacing around all the operators which complies with the godot style guide. This spacing makes it easier to read different expressions and overall cleans up the code.
 ___
 #### Put style guide infractures ####
 
@@ -142,13 +95,11 @@ ___
 
 ### Description ###
 
-If the student has followed best practices then feel free to point at these code segments as examplars. 
-
-If the student has breached the best practices and has done something that should be noted, please add the infraction.
-
-
-This should be similar to the Code Style justification.
+The user for the most part follows best practices in their code. One slight infraction is that throughout the files the user macsess the properties of the target. This is not best practice since continously acsessing the variable can be less efficiant
 
 #### Best Practices Infractions ####
 
+[Repeated acsess to target.position and target.velocity](https://github.com/ensemble-ai/exercise-2-camera-control-ezrenjoa/blob/99726fa635354a197638d1af666c8bd89f005ff5/Obscura/scripts/camera_controllers/lerp_follow.gd#L26) - Both target.position and target.velocity are used multiple times in the code. Storing these in local variables at the start is best practice since not doing so would introduce a slight overhead.
+
+[Clear Comments for Boundry Checks](https://github.com/ensemble-ai/exercise-2-camera-control-ezrenjoa/blob/99726fa635354a197638d1af666c8bd89f005ff5/Obscura/scripts/camera_controllers/speedup_push_box.gd#L40) - The addition of specific comments regarding the boundry changes helps clarify the purpose of each of the blocks and especially in complex conditions its make it clear what part of the code is exactly effecting which part
 #### Best Practices Exemplars ####
